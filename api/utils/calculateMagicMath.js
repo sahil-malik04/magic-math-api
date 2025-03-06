@@ -1,14 +1,18 @@
-const memo = new Map();
-
-// implement with memoization
 const calculateMagicMath = (n) => {
   if (n === 0) return 0;
   if (n === 1) return 1;
-  if (memo.has(n)) return memo.get(n);
 
-  const result = calculateMagicMath(n - 2) + calculateMagicMath(n - 1) + n;
-  memo.set(n, result);
-  return result;
+  let previousValue = 0,
+    currentValue = 1,
+    magicMathResult = 0;
+
+  for (let step = 2; step <= n; step++) {
+    magicMathResult = previousValue + currentValue + step;
+    previousValue = currentValue;
+    currentValue = magicMathResult;
+  }
+
+  return magicMathResult;
 };
 
 module.exports = { calculateMagicMath };

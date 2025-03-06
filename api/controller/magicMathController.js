@@ -2,20 +2,22 @@ const { status } = require("../utils/status");
 const { calculateMagicMath } = require("../utils/calculateMagicMath");
 const { alertMessages } = require("../utils/constants");
 
-const magicMath = (req, res) => {
+const getMagicMathValue = (req, res) => {
   try {
-    const number = Number(req.params.number);
-    if (!Number.isInteger(number) || number < 0) {
+    const inputNumber = Number(req.params.number);
+
+    if (!Number.isInteger(inputNumber) || inputNumber < 0) {
       return res.status(status.CONFLICT).json({
         message: alertMessages.NON_NEGATIVE,
       });
     }
 
-    const result = calculateMagicMath(number);
-    if (result) {
+    const magicMathResult = calculateMagicMath(inputNumber);
+
+    if (magicMathResult !== undefined) {
       res.status(status.OK).json({
-        number,
-        result,
+        number: inputNumber,
+        result: magicMathResult,
       });
     }
   } catch (err) {
@@ -26,5 +28,5 @@ const magicMath = (req, res) => {
 };
 
 module.exports = {
-  magicMath,
+  getMagicMathValue,
 };

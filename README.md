@@ -9,8 +9,8 @@ This API exposes a REST endpoint where users can get the Magic Math result for a
 
 ## Features
 
-- Fast computation using **memoization**
-- RESTful API built with **Express.js**
+- Fast computation using an iterative approach for better space efficiency
+- RESTful API built with Express.js
 - Proper error handling for invalid inputs
 
 ---

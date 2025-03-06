@@ -4,8 +4,8 @@ const { alertMessages } = require("../utils/constants");
 
 const magicMath = (req, res) => {
   try {
-    const number = parseInt(req.params.number);
-    if (isNaN(number) || number < 0) {
+    const number = Number(req.params.number);
+    if (!Number.isInteger(number) || number < 0) {
       return res.status(status.CONFLICT).json({
         message: alertMessages.NON_NEGATIVE,
       });
